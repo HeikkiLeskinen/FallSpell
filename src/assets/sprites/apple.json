@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "apple.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 386,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 24,
+        "w": 386,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 433,
+        "h": 467
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "apple.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 386,
+      "h": 419
+    },
+    "scale": 1
+  }
+}

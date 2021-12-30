@@ -1,0 +1,22 @@
+{
+  "sprites": [
+    {
+      "key": "APPLE",
+      "type": "FALLING_OBJECT",
+      "solution": "Äpple",
+      "path": "apple.json"
+    },
+    {
+      "key": "CAR",
+      "type": "FALLING_OBJECT",
+      "solution": "Bil",
+      "path": "car.json"
+    },
+    {
+      "key": "EXPLOSION",
+      "type": "EXPLOSION",
+      "solution": "",
+      "path": "explosion.json"
+    }
+  ]
+}

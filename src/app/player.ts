@@ -5,7 +5,7 @@ import { GameApp } from './app';
 import { GameContext } from './types';
 
 export class Player {
-  sprite: PIXI.Sprite;
+  sprite: PIXI.Sprite; //FIXME: make private
   input: TextInput;
 
   public constructor() {
@@ -39,7 +39,7 @@ export class Player {
   private onKeyPress(keyCode: number){
     if (keyCode === 13){
       // @ts-ignore
-      GameApp.context.word = this.input.text
+      GameApp.context.word = this.input.text;
     }
   }
 

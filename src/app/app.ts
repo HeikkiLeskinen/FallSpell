@@ -6,7 +6,7 @@ import { GameContext, WorldObjects } from './types';
 import { gameOverText } from './utils';
 export class GameApp {
 
-    static app: PIXI.Application
+    static app: PIXI.Application // TODO: is the static the way to go?
     static Stage: PIXI.Container
     static ActiveEntities: Array<WorldObjects> = []
     static context: GameContext
@@ -28,7 +28,7 @@ export class GameApp {
       GameApp.GameOver = false;
       GameApp.ActiveEntities.push(new Player())
       GameApp.context = {
-        respawnCounter: 100
+        respawnCounter: 200
       }
     }
 
@@ -38,7 +38,7 @@ export class GameApp {
           GameApp.EndGame();
         }
 
-        if (!GameApp.GameOver){
+        if (!GameApp.GameOver){ //FIXME: should be a game phase?
           for (const currentEntity of GameApp.ActiveEntities) {
             GameApp.ActiveEntities = GameApp.ActiveEntities.filter(obj => obj.isAlive);
             currentEntity.Update(delta, GameApp.context)
@@ -53,7 +53,7 @@ export class GameApp {
   static ShouldAddAnotherObject(delta: number) {
     if (GameApp.ActiveEntities.length <= 1){
       if (GameApp.context.respawnCounter < 0){
-        GameApp.context.respawnCounter = 100;
+        GameApp.context.respawnCounter = 200; // TODO: make nicer?
         return true;
       } else {
         GameApp.context.respawnCounter -= delta;

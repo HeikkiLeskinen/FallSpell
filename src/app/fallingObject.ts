@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { GameApp } from './app';
-import { Loader } from './Loader'
+import { Loader } from './loader'
 import { GameContext } from './types';
 
 export class FallingObject {

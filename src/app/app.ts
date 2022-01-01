@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { FallingObject } from './fallingObject';
-import { Loader } from './Loader'
+import { Loader } from './loader'
 import { Player } from './player';
 import { GameContext, WorldObjects } from './types';
 import { gameOverLostText, gameOverWinText } from './utils';

@@ -15,7 +15,8 @@ export enum SpriteType {
 
 export class Loader {
 
-  public static textures: { string?: PIXI.Texture[] } = {};
+  private static textures: { string?: PIXI.Texture[] } = {};
+  private static fallingObjRepo: any[] = [];
 
   public static GetPlayerSprite(): PIXI.AnimatedSprite {
     const player = data.sprites.find(sprite => sprite.type === SpriteType.PLAYER);
@@ -30,8 +31,9 @@ export class Loader {
   }
 
   public static GetFallingObjectSprite(): SpriteContext {
-    const fallingObjects = data.sprites.filter(sprite => sprite.type === SpriteType.FALLING_OBJECT);
-    const randomObject = fallingObjects[Math.floor(Math.random() * fallingObjects.length)];
+    const randomObject = Loader.fallingObjRepo[Math.floor(Math.random() * Loader.fallingObjRepo.length)];
+    let index = Loader.fallingObjRepo.findIndex(d => d.key === randomObject.key);
+    Loader.fallingObjRepo.splice(index, 1);
 
     const objectTextures = Loader.textures[randomObject.key];
 
@@ -69,6 +71,18 @@ export class Loader {
         const textures = Object.keys(frames).map(key => PIXI.Texture.from(key));
         Loader.textures[element.key] = (Loader.textures[element.key] || []).concat(textures);
       })
+
+      //FIXME: isolate to a class
+    let fallingObjRepo = data.sprites.filter(sprite => sprite.type === SpriteType.FALLING_OBJECT);
+    fallingObjRepo = fallingObjRepo.concat(fallingObjRepo).concat(fallingObjRepo);
+    shuffleArray(fallingObjRepo)
+    Loader.fallingObjRepo = fallingObjRepo;
   }
 }
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}

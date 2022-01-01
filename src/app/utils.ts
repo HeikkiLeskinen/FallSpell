@@ -18,7 +18,11 @@ const style = new PIXI.TextStyle({
   lineJoin: 'round',
 });
 
-export const gameOverText = new PIXI.Text('Game Over! Loser!', style);
-gameOverText.x = 250;
-gameOverText.y = 300;
+export const gameOverLostText = new PIXI.Text('Spelet över! Du fölorare!', style);
+gameOverLostText.x = 250;
+gameOverLostText.y = 300;
+
+export const gameOverWinText = new PIXI.Text('Krattis Pro! Du vann!', style);
+gameOverWinText.x = 250;
+gameOverWinText.y = 300;
 

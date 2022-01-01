@@ -3,52 +3,59 @@ import { FallingObject } from './fallingObject';
 import { Loader } from './Loader'
 import { Player } from './player';
 import { GameContext, WorldObjects } from './types';
-import { gameOverText } from './utils';
+import { gameOverLostText, gameOverWinText } from './utils';
 export class GameApp {
 
-    static app: PIXI.Application // TODO: is the static the way to go?
-    static Stage: PIXI.Container
-    static ActiveEntities: Array<WorldObjects> = []
-    static context: GameContext
-    static GameOver: boolean;
+  static app: PIXI.Application // TODO: is the static the way to go?
+  static Stage: PIXI.Container
+  static ActiveEntities: Array<WorldObjects> = []
+  static context: GameContext
+  static GameOver: boolean;
 
-    constructor(parent: HTMLElement, width: number, height: number) {
-        GameApp.app = new PIXI.Application({width, height, backgroundColor : 0x000000})
-        parent.replaceChild(GameApp.app.view, parent.lastElementChild)
-        Loader.Load()
+  constructor(parent: HTMLElement, width: number, height: number) {
+      GameApp.app = new PIXI.Application({width, height, backgroundColor : 0x000000})
+      parent.replaceChild(GameApp.app.view, parent.lastElementChild)
+      Loader.Load()
+  }
+
+  public initialize(): void {
+    this.setup();
+    GameApp.app.ticker.add(this.update)
+  }
+
+  private setup(): void {
+    GameApp.Stage = GameApp.app.stage
+    GameApp.GameOver = false;
+    GameApp.ActiveEntities.push(new Player())
+    GameApp.context = {
+      score: { max: 10, current: 0 },
+      health: { max: 3, current: 3 },
+      respawnCounter: 200
     }
+  }
 
-    public initialize(): void {
-      this.setup();
-      GameApp.app.ticker.add(this.update)
-    }
+  private update(delta: number) {
 
-    private setup(): void {
-      GameApp.Stage = GameApp.app.stage
-      GameApp.GameOver = false;
-      GameApp.ActiveEntities.push(new Player())
-      GameApp.context = {
-        respawnCounter: 200
+      if (!GameApp.GameOver){ //FIXME: should be a game phase?
+        for (const currentEntity of GameApp.ActiveEntities) {
+          GameApp.ActiveEntities = GameApp.ActiveEntities.filter(obj => obj.isAlive);
+          currentEntity.Update(delta, GameApp.context)
+        }
+
+        if (GameApp.ShouldAddAnotherObject(delta)){
+          GameApp.ActiveEntities.push(new FallingObject())
+        }
       }
-    }
 
-    private update(delta: number) {
+      if (GameApp.shouldStopTheGame()){
+        GameApp.EndGame();
+      }
+  }
 
-        if (GameApp.ActiveEntities.find(obj => obj.hasCrashed)){
-          GameApp.EndGame();
-        }
-
-        if (!GameApp.GameOver){ //FIXME: should be a game phase?
-          for (const currentEntity of GameApp.ActiveEntities) {
-            GameApp.ActiveEntities = GameApp.ActiveEntities.filter(obj => obj.isAlive);
-            currentEntity.Update(delta, GameApp.context)
-          }
-
-          if (GameApp.ShouldAddAnotherObject(delta)){
-            GameApp.ActiveEntities.push(new FallingObject())
-          }
-        }
-    }
+  static shouldStopTheGame() {
+    return GameApp.context.score.current >= GameApp.context.score.max ||
+    GameApp.context.health.current <= 0
+  }
 
   static ShouldAddAnotherObject(delta: number) {
     if (GameApp.ActiveEntities.length <= 1){
@@ -63,7 +70,11 @@ export class GameApp {
   }
 
   static EndGame(){
-    GameApp.Stage.addChild(gameOverText);
+    if (GameApp.context.score.current >= GameApp.context.score.max){
+      GameApp.Stage.addChild(gameOverWinText);
+    } else {
+      GameApp.Stage.addChild(gameOverLostText);
+    }
     GameApp.GameOver = true;
   }
 }

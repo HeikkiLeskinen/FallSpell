@@ -13,10 +13,64 @@
       "path": "car.json"
     },
     {
+      "key": "SPINATCH_SOUP",
+      "type": "FALLING_OBJECT",
+      "solution": "Spenat",
+      "path": "spinatch_soup.json"
+    },
+    {
+      "key": "CAT",
+      "type": "FALLING_OBJECT",
+      "solution": "Katt",
+      "path": "cat.json"
+    },
+    {
+      "key": "DOG",
+      "type": "FALLING_OBJECT",
+      "solution": "Hund",
+      "path": "dog.json"
+    },
+    {
+      "key": "HAMSTER",
+      "type": "FALLING_OBJECT",
+      "solution": "Marsvin",
+      "path": "hamster.json"
+    },
+    {
       "key": "EXPLOSION",
       "type": "EXPLOSION",
       "solution": "",
       "path": "explosion.json"
+    },
+    {
+      "key": "DOCTOR",
+      "type": "FALLING_OBJECT",
+      "solution": "Doktor",
+      "path": "doctor.json"
+    },
+    {
+      "key": "TREE",
+      "type": "FALLING_OBJECT",
+      "solution": "trä",
+      "path": "tree.json"
+    },
+    {
+      "key": "HAT",
+      "type": "FALLING_OBJECT",
+      "solution": "Hatt",
+      "path": "hat.json"
+    },
+    {
+      "key": "CLOVES",
+      "type": "FALLING_OBJECT",
+      "solution": "Vantar",
+      "path": "cloves.json"
+    },
+    {
+      "key": "CLOUD",
+      "type": "FALLING_OBJECT",
+      "solution": "Moln",
+      "path": "cloud.json"
     }
   ]
 }

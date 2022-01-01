@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "dog.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 423,
+        "h": 395
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 16,
+        "y": 15,
+        "w": 423,
+        "h": 395
+      },
+      "sourceSize": {
+        "w": 460,
+        "h": 427
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "dog.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 423,
+      "h": 395
+    },
+    "scale": 1
+  }
+}

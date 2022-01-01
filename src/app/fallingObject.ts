@@ -36,7 +36,7 @@ export class FallingObject {
     explosion.anchor.x = 0.5;
 		explosion.anchor.y = 0.5;
     explosion.loop = false;
-    explosion.animationSpeed = 10/60;
+    explosion.animationSpeed = 20/60;
     this.#explosion = explosion;
 
     this.#hint = new PIXI.Text(this.#answer, {fontFamily : 'Arial', fontSize: 24, fill : 0xffffff, align : 'center'});

@@ -51,7 +51,7 @@
     {
       "key": "TREE",
       "type": "FALLING_OBJECT",
-      "solution": "trä",
+      "solution": "träd",
       "path": "tree.json"
     },
     {
